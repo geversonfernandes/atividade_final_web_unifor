@@ -69,7 +69,7 @@ export const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Senha incorreta!' })
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: user._id }, 'secret', {
       expiresIn: '1h',
     })
 
