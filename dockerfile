@@ -1,15 +1,20 @@
-bashCopy code
-# Use the official Node.js image as the base image
+# Usa a imagem oficial do Node.js como base
 FROM node:18
 
-# Set the working directory in the container
-WORKDIR /app
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /usr/src/app
 
-# Copy the application files into the working directory
-COPY . /app
+# Copia os arquivos do package.json e package-lock.json
+COPY package*.json ./
 
-# Install the application dependencies
+# Instala as dependências
 RUN npm install
 
-# Define the entry point for the container
+# Copia o restante dos arquivos para dentro do contêiner
+COPY . .
+
+# Expõe a porta na qual a aplicação será executada
+EXPOSE 3000
+
+# Comando para iniciar o servidor
 CMD ["npm", "start"]
